@@ -4,33 +4,33 @@ module.exports = (sequelize, DataTypes) => {
     "User",
     {
       userName: {
-        type: Sequelize.STRING(25),
+        type: DataTypes.STRING(25),
         allowNull: false,
         unique: true,
       },
       email: {
-        type: Sequelize.STRING(50),
+        type: DataTypes.STRING(50),
         allowNull: false,
         unique: true,
       },
       hashedPassword: {
-        type: Sequelize.STRING.BINARY,
+        type: DataTypes.STRING.BINARY,
         allowNull: false,
       },
       wins: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
       },
       losses: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
       },
       avatar: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         defaultValue: 1,
-        allowNull: false
+        allowNull: false,
       },
     },
     {}
