@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -37,5 +39,10 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function(models) {
   };
+
+  User.prototype.validatePassword = function (password) {
+    return bcrypt.compareSync(password, this.hashedPassword.toString());
+  };
+
   return User;
 };
