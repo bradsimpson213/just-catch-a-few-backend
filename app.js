@@ -8,7 +8,8 @@ const db = require('./db/models');
 
 
 const { port } = require('./config/index');
-const usersRouter = require("./routes/users");
+const usersRouter = require('./routes/users');
+const pokemonRouter = require('./routes/pokemon')
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/users", usersRouter);
+app.use("/pokemon", pokemonRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
