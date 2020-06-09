@@ -5,7 +5,7 @@ const path = require('path');
 const { createServer } = require('http');
 const WebSocket = require('ws');
 const db = require('./db/models');
-
+const cors = require("cors");
 
 const { port } = require('./config/index');
 const usersRouter = require('./routes/users');
@@ -14,6 +14,9 @@ const pokemonRouter = require('./routes/pokemon')
 const app = express();
 
 app.use(morgan('dev'));
+app.use(cors({ origin: "http://localhost:3000" }));
+//app.use(cors());
+// app.use(cors( {origin} ));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 

@@ -29,6 +29,7 @@ router.get(
 
     const pokemon = {
         name: pokeName,
+        id: pokeId,
         hp: pokeHp,  
         type: pokeType,
         imageUrl: pokeUrl,
