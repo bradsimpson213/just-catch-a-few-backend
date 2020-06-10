@@ -9,7 +9,8 @@ router.get(
   "/",
   asyncHandler(async (req, res, next) => {    
    
-    const pokeId = Math.floor((Math.random() * 899) + 1);
+    const pokeId = Math.floor((Math.random() * 819) + 1);
+    console.log(pokeId);
     const padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3) : number);
     
     try{
@@ -27,17 +28,20 @@ router.get(
     const randomMove1 = pokemonInfo.moves[random1].move.name;
     const randomMove2 = pokemonInfo.moves[random2].move.name;
 
+    const randomMove1Cap = randomMove1.charAt(0).toUpperCase() + randomMove1.slice(1);
+    const randomMove2Cap = randomMove2.charAt(0).toUpperCase() + randomMove2.slice(1);
+
     const pokemon = {
         name: pokeName,
         id: pokeId,
         hp: pokeHp,  
         type: pokeType,
         imageUrl: pokeUrl,
-        move1: randomMove1,
-        move2: randomMove2,
+        move1: randomMove1Cap,
+        move2: randomMove2Cap,
     };
 
-    res.status(201).json( { pokemon });
+    res.status(201).json(pokemon);
 
     } catch (e) {
         console.log(e);
