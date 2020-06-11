@@ -9,7 +9,7 @@ router.get(
   "/",
   asyncHandler(async (req, res, next) => {    
    
-    const pokeId = Math.floor((Math.random() * 819) + 1);
+    const pokeId = Math.floor((Math.random() * 807) + 1);
     console.log(pokeId);
     const padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3) : number);
     
@@ -18,6 +18,7 @@ router.get(
     const pokemonInfo = await response.json();
 
     const pokeName = pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1);
+    const singleWordName = pokeName.split("-"); 
     const pokeHp = pokemonInfo.stats[0].base_stat;
     const pokeType = pokemonInfo.types[0].type.name;
     const pokeUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokeId)}.png`;
@@ -32,7 +33,7 @@ router.get(
     const randomMove2Cap = randomMove2.charAt(0).toUpperCase() + randomMove2.slice(1);
 
     const pokemon = {
-        name: pokeName,
+        name: singleWordName,
         id: pokeId,
         hp: pokeHp,  
         type: pokeType,
