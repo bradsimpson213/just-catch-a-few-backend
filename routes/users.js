@@ -21,9 +21,7 @@ const validateUserNameAndPassword = [
     .withMessage("Please provide your user name"),
   check("password")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a password.")
-    .isLength({ max: 50 })
-    .withMessage("Password must not be more than 50 characters long"),
+    .withMessage("Please provide a password."),
   handleValidationErrors,
 ];
 
@@ -50,11 +48,12 @@ router.post(
   "/token",
   validateUserNameAndPassword,
   asyncHandler(async (req, res, next) => {
+
     const { userName, password } = req.body;
     const user = await User.findOne({
       where: { userName },
     });
-    console.log(user);
+    
     if (!user || !user.validatePassword(password)) {
       const err = new Error("Login failed");
       err.status = 401;
@@ -65,7 +64,7 @@ router.post(
     
     console.log(`User ${user.userName} logged in!`);
     const token = getUserToken(user);
-    res.json({ token, user: { userName } });
+    res.json({ token, user: { userName, wins: user.wins, losses:user.losses, avatar: user.avatar } });
   })
 );  
 
