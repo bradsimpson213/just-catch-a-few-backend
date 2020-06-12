@@ -37,7 +37,7 @@ wss.on("connection", (ws) => {
 
     const message = JSON.parse(jsonData);
     const chatMessage = message.data;
-    console.log(message.data);
+    
     const addChatMessage = {
       type: "add-chat-message",
       data: chatMessage,

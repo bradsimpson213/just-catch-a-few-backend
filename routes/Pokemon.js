@@ -21,6 +21,7 @@ router.get(
     const singleWordName = pokeName.split("-"); 
     const pokeHp = pokemonInfo.stats[0].base_stat;
     const pokeType = pokemonInfo.types[0].type.name;
+    const pokeTypeCap = pokeType.charAt(0).toUpperCase() + pokeType.slice(1);
     const pokeUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokeId)}.png`;
 
     const random1 = Math.floor(((Math.random() * (pokemonInfo.moves.length - 1)) + 1))
@@ -36,7 +37,7 @@ router.get(
         name: singleWordName,
         id: pokeId,
         hp: pokeHp,  
-        type: pokeType,
+        type: pokeTypeCap,
         imageUrl: pokeUrl,
         move1: randomMove1Cap,
         move2: randomMove2Cap,
