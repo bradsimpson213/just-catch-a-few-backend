@@ -19,7 +19,15 @@ app.use(cors({ origin: "http://localhost:3000" }));
 //app.use(cors());
 // app.use(cors( {origin} ));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "/public")));
+// app.use(express.static(path.join(__dirname, "/public")));
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+	app.get('/', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+}
+
 
 app.use("/users", usersRouter);
 app.use("/pokemon", pokemonRouter);
@@ -105,7 +113,7 @@ const processIncomingMessage = (jsonData, ws) => {
   console.log(`Processing incoming message ${jsonData}...`);
 
   const message = JSON.parse(jsonData);
-  console.log(game);
+  // console.log(game);
   switch (message.type) {
     case 'add-new-player':
       addNewPlayer(message.data, ws);
