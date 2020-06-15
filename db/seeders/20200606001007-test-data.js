@@ -9,21 +9,21 @@ module.exports = {
         "Users",
         [
           {
-            userName: "guest",
+            userName: "Guest",
             email: "guest@guest.com",
             hashedPassword: bcrypt.hashSync("guest", 10),
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            userName: "brads213",
+            userName: "Brads213",
             email: "bradsimpson@icloud.com",
             hashedPassword: bcrypt.hashSync("brads", 10),
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            userName: "andy1111",
+            userName: "Andy1111",
             email: "andysimpson1111@gmail.com",
             hashedPassword: bcrypt.hashSync("andys", 10),
             createdAt: new Date(),
